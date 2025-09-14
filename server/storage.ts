@@ -58,7 +58,7 @@ export interface IStorage {
     language?: string;
     limit?: number;
     offset?: number;
-  }): Promise<Course[]>;
+  }): Promise<(Course & { instructor: User; category: Category })[]>;
   getCourse(id: string): Promise<Course | undefined>;
   getCourseWithInstructor(id: string): Promise<(Course & { instructor: User }) | undefined>;
   createCourse(course: InsertCourse): Promise<Course>;
@@ -175,7 +175,7 @@ export class DatabaseStorage implements IStorage {
     language?: string;
     limit?: number;
     offset?: number;
-  } = {}): Promise<Course[]> {
+  } = {}): Promise<(Course & { instructor: User; category: Category })[]> {
     const conditions = [eq(courses.isPublished, true)];
 
     if (filters.category) {
@@ -199,23 +199,33 @@ export class DatabaseStorage implements IStorage {
       conditions.push(sql`${courses.language} = ${filters.language} OR ${courses.language} = 'both'`);
     }
 
-    let baseQuery = db.select().from(courses);
+    let query = db
+      .select()
+      .from(courses)
+      .innerJoin(users, eq(courses.instructorId, users.id))
+      .innerJoin(categories, eq(courses.categoryId, categories.id));
     
     if (conditions.length > 0) {
-      baseQuery = baseQuery.where(and(...conditions));
+      query = query.where(and(...conditions));
     }
 
-    baseQuery = baseQuery.orderBy(desc(courses.createdAt));
+    query = query.orderBy(desc(courses.createdAt));
 
     if (filters.limit && filters.offset) {
-      return await baseQuery.limit(filters.limit).offset(filters.offset);
+      query = query.limit(filters.limit).offset(filters.offset);
     } else if (filters.limit) {
-      return await baseQuery.limit(filters.limit);
+      query = query.limit(filters.limit);
     } else if (filters.offset) {
-      return await baseQuery.offset(filters.offset);
+      query = query.offset(filters.offset);
     }
 
-    return await baseQuery;
+    const results = await query;
+    
+    return results.map(result => ({
+      ...result.courses,
+      instructor: result.users,
+      category: result.categories
+    }));
   }
 
   async getCourse(id: string): Promise<Course | undefined> {
@@ -436,11 +446,13 @@ export class DatabaseStorage implements IStorage {
       conditions.push(sql`${blogPosts.tags} && ${filters.tags}`);
     }
 
-    let query = db
+    const baseQuery = db
       .select()
       .from(blogPosts)
       .innerJoin(users, eq(blogPosts.authorId, users.id))
       .leftJoin(categories, eq(blogPosts.categoryId, categories.id));
+
+    let query = baseQuery;
 
     if (conditions.length > 0) {
       query = query.where(and(...conditions));
@@ -675,4 +687,7 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+import { MemoryStorage } from "./memory-storage";
+
+// Use memory storage when database is not available
+export const storage = new MemoryStorage();

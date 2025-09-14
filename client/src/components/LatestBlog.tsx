@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import BlogCard from './BlogCard';
 import { ArrowRight, PenTool } from 'lucide-react';
 
@@ -22,6 +23,7 @@ interface BlogPost {
 interface LatestBlogProps {
   posts?: BlogPost[];
   language?: 'so' | 'en';
+  isLoading?: boolean;
   onViewAll?: () => void;
   onReadMore?: (postId: string) => void;
 }
@@ -29,6 +31,7 @@ interface LatestBlogProps {
 export default function LatestBlog({
   posts = [],
   language = 'so',
+  isLoading = false,
   onViewAll = () => {},
   onReadMore = () => {}
 }: LatestBlogProps) {
@@ -86,18 +89,36 @@ export default function LatestBlog({
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <BlogCard
-              key={post.id}
-              {...post}
-              language={language}
-              onReadMore={() => onReadMore(post.id)}
-            />
-          ))}
+          {isLoading ? (
+            // Loading skeleton
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="space-y-3">
+                <Skeleton className="h-48 w-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-1/2" />
+                  <div className="flex items-center justify-between mt-4">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-16" />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            posts.map((post) => (
+              <BlogCard
+                key={post.id}
+                {...post}
+                language={language}
+                onReadMore={() => onReadMore(post.id)}
+              />
+            ))
+          )}
         </div>
 
         {/* Empty State */}
-        {posts.length === 0 && (
+        {!isLoading && posts.length === 0 && (
           <div className="text-center py-12">
             <PenTool className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-xl font-semibold mb-2">

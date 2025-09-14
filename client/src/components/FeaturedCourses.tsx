@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import CourseCard from './CourseCard';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 
@@ -26,6 +27,7 @@ interface Course {
 interface FeaturedCoursesProps {
   courses?: Course[];
   language?: 'so' | 'en';
+  isLoading?: boolean;
   onViewAll?: () => void;
   onEnrollCourse?: (courseId: string) => void;
   onAddToCart?: (courseId: string) => void;
@@ -34,6 +36,7 @@ interface FeaturedCoursesProps {
 export default function FeaturedCourses({
   courses = [],
   language = 'so',
+  isLoading = false,
   onViewAll = () => {},
   onEnrollCourse = () => {},
   onAddToCart = () => {}
@@ -92,19 +95,36 @@ export default function FeaturedCourses({
 
         {/* Course Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {courses.map((course) => (
-            <CourseCard
-              key={course.id}
-              {...course}
-              language={language}
-              onEnroll={() => onEnrollCourse(course.id)}
-              onAddToCart={() => onAddToCart(course.id)}
-            />
-          ))}
+          {isLoading ? (
+            // Loading skeleton
+            Array.from({ length: 4 }).map((_, index) => (
+              <div key={index} className="space-y-3">
+                <Skeleton className="h-48 w-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-6 w-16" />
+                    <Skeleton className="h-8 w-20" />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            courses.map((course) => (
+              <CourseCard
+                key={course.id}
+                {...course}
+                language={language}
+                onEnroll={() => onEnrollCourse(course.id)}
+                onAddToCart={() => onAddToCart(course.id)}
+              />
+            ))
+          )}
         </div>
 
         {/* Empty State */}
-        {courses.length === 0 && (
+        {!isLoading && courses.length === 0 && (
           <div className="text-center py-12">
             <TrendingUp className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-xl font-semibold mb-2">
