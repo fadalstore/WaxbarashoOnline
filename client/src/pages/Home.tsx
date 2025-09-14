@@ -7,6 +7,8 @@ import LatestBlog from '@/components/LatestBlog';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 import ShoppingCart from '@/components/ShoppingCart';
+import SEOHead from '@/components/SEOHead';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 export default function Home() {
   const [language, setLanguage] = useState<'so' | 'en'>('so');
@@ -65,6 +67,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* SEO Meta Tags for Google Search Console */}
+      <SEOHead
+        title={language === 'so' ? 
+          "Macaamiil - Barashada Online ee Koorsooyin Casri ah | Teknoolaji iyo Ganacsi" : 
+          "Macaamiil - Modern Online Learning Platform | Technology & Business Courses"
+        }
+        description={language === 'so' ? 
+          "Baro koorsooyin casri ah oo ku saabsan programming, digital marketing, iyo ganacsi. Macaamiil waa barashada mustaqbalka ee arday Soomaaliyeed." : 
+          "Learn modern courses in programming, digital marketing, and business. Macaamiil is the future of learning for Somali students."
+        }
+        keywords="koorsooyin online, barashada teknoolajiyada, programming, digital marketing, ganacsi, somali courses, macaamiil, online learning"
+        url={typeof window !== 'undefined' ? window.location.href : ''}
+      />
+      
       {/* Header */}
       <Header
         cartItemCount={cartItems.length}
@@ -77,6 +93,16 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <Hero language={language} />
+
+        {/* AdSense Banner Ad */}
+        <div className="container mx-auto px-4 py-4">
+          <AdSenseUnit 
+            adSlot="1234567890"
+            adFormat="rectangle"
+            className="flex justify-center"
+            style={{ minHeight: '90px' }}
+          />
+        </div>
 
         {/* Featured Courses */}
         <FeaturedCourses
@@ -104,6 +130,16 @@ export default function Home() {
           onEnrollCourse={handleEnrollCourse}
           onAddToCart={handleAddToCart}
         />
+
+        {/* AdSense Sidebar Ad */}
+        <div className="container mx-auto px-4 py-4">
+          <AdSenseUnit 
+            adSlot="9876543210"
+            adFormat="vertical"
+            className="flex justify-center"
+            style={{ minHeight: '250px', maxWidth: '300px', margin: '0 auto' }}
+          />
+        </div>
 
         {/* Latest Blog Posts */}
         <LatestBlog

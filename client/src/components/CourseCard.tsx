@@ -60,12 +60,33 @@ export default function CourseCard({
     e.stopPropagation();
     onEnroll();
     console.log('Enroll clicked for course:', id);
+    
+    // Track course enrollment with Google Analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'course_enrollment', {
+        event_category: 'courses',
+        event_label: title,
+        course_id: id,
+        course_price: price
+      });
+    }
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     onAddToCart();
     console.log('Add to cart clicked for course:', id);
+    
+    // Track add to cart with Google Analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'add_to_cart', {
+        event_category: 'ecommerce',
+        event_label: title,
+        course_id: id,
+        course_price: price,
+        currency: 'USD'
+      });
+    }
   };
 
   const texts = {
