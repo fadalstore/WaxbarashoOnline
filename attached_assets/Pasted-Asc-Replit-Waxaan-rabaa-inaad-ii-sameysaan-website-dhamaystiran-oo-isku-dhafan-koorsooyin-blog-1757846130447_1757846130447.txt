@@ -1,0 +1,103 @@
+Asc Replit,
+
+Waxaan rabaa inaad ii sameysaan website dhamaystiran oo isku dhafan **koorsooyin + blogging + qayb iib**, kaas oo shaqeynaya sida website-yada caadiga ah (run ah, ma ahan test). Fadlan ku dar dhammaan waxyaabaha soo socda:
+
+### 1. Features-ka muhiimka ah
+- Homepage (featured courses + latest blog posts + search).
+- Koorsooyin:
+  • Page koorsooyin dhan (filters: category, level, price).
+  • Page koorso gaar ah (description, curriculum, instructor, reviews, buy/enroll).
+  • Instructor dashboard: upload koorso (title, description, price, video, lessons).
+  • Student dashboard: koorsooyin uu iibsaday, progress, downloads.
+- Qayb iib (e-commerce): checkout, discount codes, invoices.
+- Payment integration: Zaad, EVC+, iyo haddii la awoodo PayPal/Stripe/cards.
+- Instructor payouts: admin wuxuu go’aamin karaa boqolkiiba qaybinta (70/30 ama kale).
+- Blog / Maqaallo: publish, categories, tags, commenting.
+- Adsense integration: boosaska xayeysiiska (header, article, sidebar), iyo pages u diyaarsan (Privacy Policy, Terms, Contact).
+- SEO & Analytics: sitemap, robots.txt, GA + Search Console, schema markup (Article & Course).
+- Admin Panel: users, koorsooyin, articles, ads, orders, payouts.
+- Security: HTTPS, validation, file upload checks.
+- Responsive Design: mobile-first, app-like UX.
+- Languages: Somali + English (must).
+
+### 2. Tech Stack (doorasho)
+- Option 1 (fast build): WordPress + TutorLMS/LearnDash + WooCommerce + Adsense plugin + multilingual plugin (WPML/Polylang).
+- Option 2 (custom scalable): Laravel backend + React frontend + REST API + Mobile money/Zaad integration.
+
+Fadlan ii sheeg midka aad isticmaali doontaan.
+
+### 3. Plugins & Theme (haddii WordPress la doorto)
+- Theme: Astra (fast & SEO) ama Eduma (premium, all-in-one LMS).
+- LMS: TutorLMS (free/pro) ama LearnDash.
+- Payments: WooCommerce + Zaad/EVC+ integration (custom haddii loo baahdo).
+- Multilingual: WPML (premium) ama Polylang.
+- Adsense & SEO: Site Kit by Google, Ad Inserter, Yoast SEO / Rank Math.
+- Security & Performance: Wordfence, UpdraftPlus, LiteSpeed Cache/WP Rocket, Smush/ShortPixel.
+- Extra: Elementor (page builder), WPForms (forms), Mailchimp (email list).
+
+### 4. Pages la dhisayo
+- Homepage
+- All Courses
+- Single Course
+- Instructor Dashboard
+- Student Dashboard
+- Blog (list + single article)
+- About Us
+- Contact Us
+- Privacy Policy
+- Terms & Conditions
+- Cart / Checkout / Payment
+- Admin Panel
+
+### 5. Adsense & SEO
+- U diyaari pages: Privacy Policy, Terms, About, Contact.
+- Samee CMS loogu talagalay maqaal qoris (unique, SEO optimized).
+- Placeholder ad-slots si aan u dhigo Adsense kadib.
+- Hubi in site-ka uu buuxin karo shuruudaha Adsense (fast, original content, SEO).
+
+### 6. Liiska 30 maqaal (SEO topics)
+1. Sida lacag looga sameeyo internet-ka Soomaaliya.
+2. Top 10 siyaabood oo lacag loogu sameeyo Mobile (2025).
+3. Sida loo helo shaqo remote ah adigoo jooga Soomaaliya.
+4. Affiliate Marketing maxay tahay + sida loo bilaabo.
+5. Freelancing-ka Soomaaliya: goobaha ugu fiican ee shaqo laga helo.
+6. Sida loo barto Python (bilow ilaa heer sare).
+7. Top 10 apps lacag lagu kasbado (Android & iOS).
+8. Cashar: Sida loo sameeyo website bilaash ah (2025).
+9. AI maxay tahay? Sidee dadku lacag uga samaystaan.
+10. Coding for beginners (Somali sharaxaad).
+11. 10 Koorso online oo bilaash ah (free) + shahaado.
+12. Sida loo sameeyo koorso online oo lagu iibiyo.
+13. Koorsooyin IT-ga ugu qiimaha badan 2025.
+14. Top 5 koorsooyinka Digital Marketing.
+15. Sida loo doorto koorso ku habboon xirfaddaada.
+16. Sida lacag looga sameeyo TikTok (2025).
+17. YouTube: Sida loo bilaabo channel Somali ah oo guuleysta.
+18. Instagram marketing for beginners (Somali guide).
+19. Facebook Ads: cashar fudud oo talaabo-talaabo ah.
+20. Sida loo helo 10K followers degdeg ah.
+21. Sida loo isticmaalo Zaad (guide dhamaystiran).
+22. Sida lacag loogu diro EVC+ (bilow).
+23. Sidee Mobile Money Online loogu isticmaalaa (international transfers).
+24. Top 5 apps lacag lagu xakameeyo (budgeting).
+25. Cashar: sida loo xiro WooCommerce iyo Zaad/EVC+.
+26. Sida loo qoro CV xirfad leh (Somali).
+27. Sidee loo diyaariyaa interview shaqo (10 talo).
+28. Shaqooyinka online ugu mushaharka badan.
+29. Sidee loo barto English-ka bilaash online.
+30. Nolol fudud: Apps kaa caawinaya waxbarashada iyo shaqada.
+
+### 7. Deliverables aan filayo
+- Website buuxa (frontend + backend) lagu rakibay hosting ama la deploy-gareeyay.
+- Admin + Instructor + Student accounts test ah.
+- Docs: sida loo daro koorso, maqaal, iyo sida loo maamulo.
+- SEO setup (sitemap, robots.txt, GA, GSC).
+- Training/demo (fiidiyoow kooban ama qoraal).
+
+Waxaan rabaa in project-kan xoogga lagu saaro:
+1. Inuu noqdo website dhab ah oo shaqeeya (Adsense approval-friendly).
+2. Qayb iib oo koorsooyin lagu iibsado (Zaad/EVC+ integrated).
+3. Maqaallo keyword-optimized si views badan loo helo.
+4. Design casri ah, mobile-friendly, SEO optimized.
+
+Mahadsanid.
