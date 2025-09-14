@@ -20,7 +20,14 @@ interface CourseCardProps {
   duration: string;
   studentCount: number;
   level: 'Bilow' | 'Dhexe' | 'Horumar' | 'Beginner' | 'Intermediate' | 'Advanced';
-  category: string;
+  category: {
+    id: string;
+    name: string;
+    nameEn: string;
+    nameSo: string;
+    description?: string;
+    slug: string;
+  };
   language?: 'so' | 'en';
   onEnroll?: () => void;
   onAddToCart?: () => void;
@@ -93,7 +100,7 @@ export default function CourseCard({
         />
         <div className="absolute top-3 left-3">
           <Badge variant="secondary" className="bg-black/20 text-white backdrop-blur-sm">
-            {category}
+            {language === 'so' ? category.nameSo : category.nameEn}
           </Badge>
         </div>
         <div className="absolute top-3 right-3">
